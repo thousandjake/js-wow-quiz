@@ -24,6 +24,8 @@ var main = function() {
     if(choice == questions[counter][5]) {
       score++;
     }
+    window.alert(score);
+    window.alert(counter);
     nextQuestion();
   }
 

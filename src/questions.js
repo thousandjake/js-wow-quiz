@@ -35,7 +35,7 @@ var questions = [
   ["Who was the first to drink the Blood of Mannoroth and lead to the corruption of the Orcs?",
   "Gul'dan","Grommosh Hellscream","Garrosh Hellscream",
   "Ogrim Doomhammer",
-  "C"],
+  "B"],
 
   ["Who is the leader of the Bronze Dragonflight, and Guard of Time itself?",
   "Ysera","Nozdormu","Malygos","Deathwing aka Neltharion",

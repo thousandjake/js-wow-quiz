@@ -1,11 +1,12 @@
-.jumbotron {
-  background-image: "/media/illidan.jpg"
+body {
+  background-color: #000000;
+  color: #7FFF00;
 }
 
-#statusText {
-
+.jumbotron {
+  background-image: url("illidan.jpg");
 }
 
 #quiz {
-
+  background-color: #8B008B;
 }
