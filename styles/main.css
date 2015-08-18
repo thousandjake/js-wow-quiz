@@ -1,7 +1,11 @@
-.question {
-  display : none;
+.jumbotron {
+  background-image: "/media/illidan.jpg"
 }
 
-.question-active {
-  display: block;
+#statusText {
+
+}
+
+#quiz {
+
 }
