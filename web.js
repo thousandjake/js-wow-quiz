@@ -1,14 +1,21 @@
 var express = require('express');
 var app = express();
 
-app.use(express.static('static'));
 app.use(express.static('styles'));
 app.use(express.static('src'));
-app.use(express.static('node_modules'));
+
+app.get('/*', function(req, res, next){
+  res.setHeader('Last-Modified', (new Date()).toUTCString());
+  next();
+});
 
 app.get('/', function(req, res){
   var path = __dirname+"/static/index.html";
   res.sendFile(path);
+});
+
+app.get('/questions.json', function(req, res){
+  res.sendFile(__dirname+"/static/questions.json");
 });
 
 var server = app.listen(process.env.PORT || 3000, function () {
