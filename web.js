@@ -3,6 +3,7 @@ var app = express();
 
 app.use(express.static('styles'));
 app.use(express.static('src'));
+app.use(express.static('bower_components'));
 
 app.get('/*', function(req, res, next){
   res.setHeader('Last-Modified', (new Date()).toUTCString());

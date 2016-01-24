@@ -1,0 +1,21 @@
+{
+  "name": "lorequiz",
+  "description": "a wow based js quiz app",
+  "main": "index.js",
+  "authors": [
+    "jake thousand"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/thousandjake/js-wow-quiz",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9"
+  }
+}
