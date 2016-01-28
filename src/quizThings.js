@@ -2,7 +2,7 @@ angular.module('quiz.things',[])
   .directive('quiz', [ function () {
     return {
       template:
-      '<ol><li ng-repeat="question in data.questions"><quiz-question question="question"></quiz-question></li></ol>',
+      '<div>{{data.score}}</div><ol><li ng-repeat="question in data.questions"><quiz-question question="question"></quiz-question></li></ol>',
       restrict: 'E',
       controller: ['Quiz', '$scope', function (Quiz, $scope) {
         $scope.data = Quiz.getData();
@@ -12,19 +12,30 @@ angular.module('quiz.things',[])
   }])
   .directive('quizQuestion', [ function () {
     return {
-      template: '<div>Quiz Shit Question</div>',
+      template: '<div>{{question.text}}</div><ol><li ng-repeat="choice in question.choices"><label><input type="radio" name="question-{{question.id}}" ng-click="scoreCheck($index+1)">{{choice}}</li></ol>',
       restrict: 'E',
       scope: {
         question: '='
       },
-      controller: [function () {
-
+      controller: ['Quiz', '$scope', function (Quiz, $scope) {
+        $scope.data = Quiz.getData();
+        var answeredCorrectly = false;
+        $scope.scoreCheck = function (choiceIndex) {
+          if($scope.question.answer === choiceIndex && !answeredCorrectly) {
+            $scope.data.score ++;
+            answeredCorrectly = true;
+          } else if($scope.question.answer !== choiceIndex && answeredCorrectly) {
+            $scope.data.score --;
+            answeredCorrectly = false;
+          }
+        };
       }]
     };
   }])
   .service('Quiz', [ '$http', function ($http) {
     var data = {
-      questions: []
+      questions: [],
+      score: 0
     };
 
     this.getData = function () {
@@ -43,6 +54,7 @@ angular.module('quiz.things',[])
           data.questions = [];
           response.data.list.forEach( function (questionJSON) {
             var newQuestion = addQuestion();
+            newQuestion.id = questionJSON.id;
             newQuestion.text =  questionJSON.text;
             newQuestion.choices = questionJSON.choice;
             newQuestion.answer = questionJSON.answer;
