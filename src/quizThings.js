@@ -12,7 +12,7 @@ angular.module('quiz.things',[])
   }])
   .directive('quizQuestion', [ function () {
     return {
-      template: '<div>{{question.text}}</div><ol><li ng-repeat="choice in question.choices"><label><input type="radio" name="question-{{question.id}}" ng-click="scoreCheck($index+1)">{{choice}}</li></ol>',
+      template: '<div>{{question.text}}</div><ol><li ng-repeat="choice in question.choices" ng-class={"correct":color==="green","incorrect":color==="red"}><input type="radio" name="question-{{question.id}}" ng-click="scoreCheck($index+1)"><label>{{choice}}</label></li></ol>',
       restrict: 'E',
       scope: {
         question: '='
@@ -22,11 +22,18 @@ angular.module('quiz.things',[])
         var answeredCorrectly = false;
         $scope.scoreCheck = function (choiceIndex) {
           if($scope.question.answer === choiceIndex && !answeredCorrectly) {
+            console.log(choiceIndex+" "+answeredCorrectly+" ");
             $scope.data.score ++;
             answeredCorrectly = true;
+            $scope.color = "green";
           } else if($scope.question.answer !== choiceIndex && answeredCorrectly) {
+            console.log(choiceIndex+" "+answeredCorrectly+" ");
             $scope.data.score --;
             answeredCorrectly = false;
+            $scope.color = "red";
+          } else if($scope.question.answer !== choiceIndex && !answeredCorrectly) {
+            console.log(choiceIndex+" "+answeredCorrectly+" ");
+            $scope.color = "red";
           }
         };
       }]

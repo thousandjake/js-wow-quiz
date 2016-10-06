@@ -1,0 +1,7 @@
+.correct input[type="radio"]:checked+label{
+  background-color: seagreen;
+}
+
+.incorrect input[type="radio"]:checked+label{
+  background-color: salmon;
+}
